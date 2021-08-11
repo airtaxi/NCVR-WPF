@@ -18,13 +18,13 @@
 
         <TextBlock Text="내국인 및 외국인 여부" Margin="5,5,0,0"/>
         <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-            <CheckBox x:Name="CbxNative" Content="내국인" Margin="5,0,0,0" IsChecked="True" Checked="CbxNative_Checked"/>
-            <CheckBox x:Name="CbxForeign" Content="외국인" Margin="5,0,0,0" IsChecked="False" Checked="CbxForeign_Checked"/>
+            <CheckBox x:Name="CbxNative" Content="내국인" Margin="5,0,0,0" IsChecked="True" Checked="CbxNative_Checked" Unchecked="CbxNative_Unchecked"/>
+            <CheckBox x:Name="CbxForeign" Content="외국인" Margin="5,0,0,0" IsChecked="False" Checked="CbxForeign_Checked" Unchecked="CbxForeign_Unchecked"/>
         </StackPanel>
         <TextBlock Text="성별" Margin="5,5,0,0"/>
         <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-            <CheckBox x:Name="CbxMale" Content="남성" Margin="5,0,0,0" IsChecked="True" Checked="CbxMale_Checked"/>
-            <CheckBox x:Name="CbxFemale" Content="여성" Margin="5,0,0,0" IsChecked="False" Checked="CbxFemale_Checked"/>
+            <CheckBox x:Name="CbxMale" Content="남성" Margin="5,0,0,0" IsChecked="True" Checked="CbxMale_Checked" Unchecked="CbxMale_Unchecked"/>
+            <CheckBox x:Name="CbxFemale" Content="여성" Margin="5,0,0,0" IsChecked="False" Checked="CbxFemale_Checked" Unchecked="CbxFemale_Unchecked"/>
         </StackPanel>
         <TextBlock Text="이동 통신사" Margin="5,5,0,0"/>
         <ComboBox x:Name="CmbTelecom" Margin="5" SelectedIndex="0" HorizontalAlignment="Stretch">

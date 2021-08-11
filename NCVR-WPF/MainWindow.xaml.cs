@@ -17,8 +17,13 @@ namespace NCVR_WPF
 
         private void CbxNative_Checked(object sender, RoutedEventArgs e)
         {
-            if (CbxForeign != null)
+            if(CbxForeign != null)
                 CbxForeign.IsChecked = false;
+        }
+        private void CbxNative_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CbxNative != null && CbxForeign.IsChecked == false)
+                CbxNative.IsChecked = true;
         }
 
         private void CbxForeign_Checked(object sender, RoutedEventArgs e)
@@ -27,16 +32,34 @@ namespace NCVR_WPF
                 CbxNative.IsChecked = false;
         }
 
+        private void CbxForeign_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CbxForeign != null && CbxNative.IsChecked == false)
+                CbxForeign.IsChecked = true;
+        }
+
         private void CbxMale_Checked(object sender, RoutedEventArgs e)
         {
             if (CbxFemale != null)
                 CbxFemale.IsChecked = false;
         }
 
+        private void CbxMale_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CbxMale != null && CbxFemale.IsChecked == false)
+                CbxMale.IsChecked = true;
+        }
+
         private void CbxFemale_Checked(object sender, RoutedEventArgs e)
         {
             if (CbxMale != null)
                 CbxMale.IsChecked = false;
+        }
+
+        private void CbxFemale_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CbxFemale != null && CbxMale.IsChecked == false)
+                CbxFemale.IsChecked = true;
         }
 
         private RestRequest GenerateRequest(string data)
