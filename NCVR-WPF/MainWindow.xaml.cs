@@ -95,7 +95,6 @@ namespace NCVR_WPF
             var responseCode = responseJson.Value<string>("rsltCd");
             if (responseCode == "B000")
             {
-                string url = null;
                 var txSeqNo = responseJson.Value<string>("txSeqNo");
                 var otpNo = await this.ShowInputAsync("안내", "인증 번호를 입력해주세요.");
                 data = "svcGb=R&txSeqNo=" + txSeqNo + "&telNo=" + telNo + "&otpNo=" + otpNo;
@@ -103,17 +102,17 @@ namespace NCVR_WPF
                 response = await client.ExecuteAsync(request);
                 responseJson = JObject.Parse(response.Content);
                 responseCode = responseJson.Value<string>("rsltCd");
+                var reqId = responseJson.Value<string>("reqId");
+                string url = "https://ncvr2.kdca.go.kr/svc/waiting?reqId=" + reqId;
                 if (responseCode == "CONFLICT")
                     await this.ShowMessageAsync("오류", "동일인은 한번 접속된 후 10분 이후에 접속이 가능합니다.");
                 else if (responseCode == "B000")
                 {
-                    var reqId = responseJson.Value<string>("reqId");
                     var width = Width;
                     Width = 880;
                     if ((await this.ShowMessageAsync("안내", $"본인인증이 완료되었습니다.\n" + "접속 후 페이지 오류 또는 실수로 탭을 닫은 경우 https://ncvr2.kdca.go.kr/svc/waiting?reqId=" + reqId + "로 접속하시기 바랍니다.\n본 주소로 접속 시 10분 동안 재인증 대기를 하실 필요가 없습니다.\n주소를 클립보드에 복사하시겠습니까?", MessageDialogStyle.AffirmativeAndNegative)) == MessageDialogResult.Affirmative)
                     {
                         Width = width;
-                        url = "https://ncvr2.kdca.go.kr/svc/waiting?reqId=" + reqId;
                         Clipboard.SetDataObject(url);
                         await this.ShowMessageAsync("안내", "클립보드 복사가 완료되었습니다.\n본 메시지창을 닫으면 웹 페이지가 열립니다.");
                     }
