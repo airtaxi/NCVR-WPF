@@ -119,7 +119,7 @@ namespace NCVR_WPF
                     }
                     else
                         await this.ShowMessageAsync("안내", "본 메시지창을 닫으면 신청 웹 페이지가 열립니다.");
-                    System.Diagnostics.Process.Start(url);
+                    System.Diagnostics.Process.Start("explorer.exe", url);
                 }
                 else
                     await this.ShowMessageAsync("오류", $"{responseJson.Value<string>("rsltMsg")}");
