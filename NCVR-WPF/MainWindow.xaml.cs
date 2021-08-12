@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -13,6 +14,15 @@ namespace NCVR_WPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private static void OpenURL(string url)
+        {
+            _ = Process.Start(new ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            });
         }
 
         private void CbxNative_Checked(object sender, RoutedEventArgs e)
@@ -119,7 +129,7 @@ namespace NCVR_WPF
                     }
                     else
                         await this.ShowMessageAsync("안내", "본 메시지창을 닫으면 신청 웹 페이지가 열립니다.");
-                    System.Diagnostics.Process.Start("explorer.exe", url);
+                    OpenURL(url);
                 }
                 else
                     await this.ShowMessageAsync("오류", $"{responseJson.Value<string>("rsltMsg")}");
